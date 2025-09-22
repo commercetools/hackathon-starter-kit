@@ -1,12 +1,12 @@
-# EcomHack.AI: Commercetools Hackathon Starter Kit
+# EcomHack.AI: commercetools Hackathon Starter Kit
 
 A comprehensive starter kit for building modern commerce applications using commercetools' suite of products and APIs.
 
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/your-username/ecomhack-ai.git
-cd ecomhack-ai
+git clone https://github.com/commercetools/hackathon-starter-kit.git
+cd composable-commerce
 npm install
 ```
 
@@ -71,13 +71,6 @@ CTP_SCOPES="manage_project:${CTP_PROJECT_KEY} view_products:${CTP_PROJECT_KEY}"
   - Project setup
   - Required scopes configured
 
-## 📚 Documentation
-
-Detailed documentation is available in the `docs` folder:
-- `architecture.md` - System design and component interaction
-- `setup.md` - Step-by-step setup guide
-- `api-reference.md` - API documentation and examples
-
 ## 🔧 Configuration
 
 1. Copy `.env.example` to `.env`:
@@ -92,18 +85,6 @@ CTP_CLIENT_ID=your-client-id
 CTP_CLIENT_SECRET=your-client-secret
 CTP_SCOPE=your-scopes
 ```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the `LICENSE` file for details.
 
 ## 🆘 Support
 

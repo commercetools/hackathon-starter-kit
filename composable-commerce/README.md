@@ -2,14 +2,6 @@
 
 This folder contains examples of using the commercetools Platform SDK with TypeScript.
 
-## Prerequisites
-
-1. Create a commercetools project in the Merchant Center
-2. Create API Client credentials with the following scopes:
-   - manage_products
-   - manage_orders
-   - manage_customers
-
 ## Setup
 
 1. Install dependencies:
