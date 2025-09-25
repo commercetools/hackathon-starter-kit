@@ -2,13 +2,14 @@
 
 A comprehensive starter kit for building modern commerce applications using commercetools' suite of products and APIs. This kit provides multiple pathways to integrate with commercetools, from traditional SDK usage to cutting-edge AI-powered Model Context Protocol (MCP) integrations.
 
-## 🛠 Available Implementations
+## 🛠 Available guides
 
 ### 📦 **Composable Commerce SDK**
 Traditional commercetools integration using TypeScript SDK
 - **Location**: `composable-commerce/`
 - **Best for**: Direct API integration, custom commerce applications
 - **Features**: Full SDK access, type safety, complete control over API calls
+- **Full guide**: [composable-commerce/README.md](composable-commerce/README.md)
 
 ### 🤖 **Commerce MCP (Model Context Protocol)**
 AI-native integrations for modern LLM applications
@@ -17,23 +18,20 @@ AI-native integrations for modern LLM applications
 - **Location**: `commerce-mcp/developer-mcp/`
 - **Best for**: Faster commerce development
 - **Features**: MCP server ready to be integrated in IDE
+- **Full guide**: [commerce-mcp/developer-mcp/README.md](commerce-mcp/developer-mcp/README.md)
 
-#### **Essentials MCP** ⭐ *Recommended for Hackathons*
+#### **Essentials MCP**
 - **Location**: `commerce-mcp/essentials-mcp/`
 - **Best for**: Rapid AI-powered commerce prototypes, chatbots, AI assistants
-- **Features**:
-  - Pre-built MCP server with 60+ commerce tools
-  - **Sample Chat Application** - Complete Next.js AI assistant
-  - One-command setup and deployment
-  - OpenAI GPT integration ready
-  - Professional UI with streaming responses
+- **Features**: MCP server offering 60+ commerce based tools 
+- **Full guide**: [commerce-mcp/essentials-mcp/README.md](commerce-mcp/essentials-mcp/README.md)
 
 ## 🚀 Quick Start
 
-### For AI/LLM Applications (Recommended)
+### For AI/LLM Applications
 ```bash
 git clone https://github.com/commercetools/hackathon-starter-kit.git
-cd commerce-mcp/essentials-mcp
+cd commerce-mcp/sample-app
 # See README for setup instructions
 ```
 
@@ -46,32 +44,25 @@ npm install
 
 ## 💡 Sample Implementations & Use Cases
 
-### 🎯 **AI-Powered Commerce Assistant** (Essentials MCP)
+### 🎯 **AI-Powered Commerce Assistant** (Essentials + Developer MCP)
 Complete chat application demonstrating:
+- **commercetols Usage Guidance** - Built-in access to commercetools documentation and schemas
 - **Customer Service**: Answer product questions, order status inquiries
 - **Product Discovery**: AI-powered product search and recommendations
 - **Order Management**: Create, update, and track orders through conversation
 - **Inventory Management**: Real-time stock checking and updates
 - **Multi-language Support**: Global commerce with AI translation
+- **OpenAI Support**: OpenAI GPT integration ready
 
-**Demo**: `commerce-mcp/essentials-mcp/sample-app/`
+**Framework**: `commerce-mcp/sample-mcp/`
 
 ### 🛒 **E-commerce Applications** (Composable Commerce)
-Traditional web applications with:
+Traditional service layer applications with:
 - Product catalog browsing
 - Shopping cart functionality
-- Order processing workflows
 - Customer account management
 
 **Examples**: `composable-commerce/src/examples/`
-
-### 🔧 **commercetools Development Support** (Developer MCP)
-Integrate commercetools docs MCP in IDE for:
-- Faster implementation of commerce solutions 
-- Increase commercetools offerings awareness
-- Learn about commercetools products specifications
-
-**Framework**: `commerce-mcp/developer-mcp/`
 
 ## 🔑 Project Setup
 
@@ -86,7 +77,7 @@ Integrate commercetools docs MCP in IDE for:
    - Select "Create project with sample data"
    - Choose B2B or B2C sample data based on your needs
    - Chose an organization name of your liking
-   - Choose a project key (it will automatically be prefixed with `ecomhack25-`
+   - Choose a project key (it will automatically be prefixed with `ecomhack25-`)
    - Make sure you check "I am participating in the ecomhack event with this project"
 
 > If you have a commercetools account follow the following instructions
@@ -96,7 +87,7 @@ Integrate commercetools docs MCP in IDE for:
 3. Visit the [project creation page](https://mc.europe-west1.gcp.commercetools.com/account/projects/new)
    - Select "Create project with sample data"
    - Choose B2B or B2C sample data based on your needs
-   - Choose a project key (it will automatically be prefixed with `ecomhack25-`
+   - Choose a project key (it will automatically be prefixed with `ecomhack25-`)
    - Make sure you check "I am participating in the ecomhack event with this project"
 
 ### 3. Get API Credentials
@@ -159,35 +150,6 @@ CTP_CLIENT_ID=your-client-id
 CTP_CLIENT_SECRET=your-client-secret
 CTP_SCOPE=your-scopes
 ```
-
-## 🚀 Getting Started Guides
-
-### **Essentials MCP** (AI Commerce Assistant)
-```bash
-cd commerce-mcp/essentials-mcp
-npm install
-cp .env.example .env
-# Add your OpenAI API key to .env
-npm run dev
-```
-**Full guide**: [commerce-mcp/essentials-mcp/README.md](commerce-mcp/essentials-mcp/README.md)
-
-### **Composable Commerce** (Traditional SDK)
-```bash
-cd composable-commerce
-npm install
-cp .env.example .env
-# Add your commercetools credentials to .env
-npm run examples
-```
-**Full guide**: [composable-commerce/README.md](composable-commerce/README.md)
-
-### **Developer MCP** (Custom AI Tools)
-```bash
-cd commerce-mcp/developer-mcp
-# Follow setup instructions for custom MCP development
-```
-**Full guide**: [commerce-mcp/developer-mcp/README.md](commerce-mcp/developer-mcp/README.md)
 
 ## 🆘 Support & Resources
 
