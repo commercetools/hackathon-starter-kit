@@ -61,6 +61,7 @@ Traditional service layer applications with:
 - Product catalog browsing
 - Shopping cart functionality
 - Customer account management
+- Bulk import operations
 
 **Examples**: `composable-commerce/src/examples/`
 

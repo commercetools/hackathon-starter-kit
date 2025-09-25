@@ -36,6 +36,9 @@ cp .env.example .env
 - `src/examples/create-cart.ts`: Create new shopping carts
 - `src/examples/update-cart.ts`: Update cart with line items
 
+### Product Bulk import
+- - `src/examples/import-product.ts`: Bulk import product and checks import operation status
+
 ## Running Examples
 
 To run any individual example:
