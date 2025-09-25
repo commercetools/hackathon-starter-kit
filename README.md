@@ -75,18 +75,29 @@ Integrate commercetools docs MCP in IDE for:
 
 ## 🔑 Project Setup
 
-### 1. Create commercetools Account
-1. Visit [commercetools Merchant Center](https://mc.europe-west1.gcp.commercetools.com/login/new)
-2. Create a new account and organization
-3. No credit card required
+### 1. Create or use a commercetools account
 
-### 2. Create New Project
-1. Login to Merchant Center
-2. Click "Create New Project"
-3. Important settings:
-   - Mark as "used during ecomhack"
-   - Project key format: `ecomhack25-team<XX>` (e.g., ecomhack25-team17)
+> If you have no commercetools account follow the following instructions
+ 
+1. Visit [commercetools Merchant Center](https://mc.europe-west1.gcp.commercetools.com/login/new)
+2. Create a new account and organization - no credit card required
+3. Enter your E-Mail and follow the instruction in the E-Mail sent
+4. The project creation flow shows
    - Select "Create project with sample data"
+   - Choose B2B or B2C sample data based on your needs
+   - Chose an organization name of your liking
+   - Choose a project key (it will automatically be prefixed with `ecomhack25-`
+   - Make sure you check "I am participating in the ecomhack event with this project"
+
+> If you have a commercetools account follow the following instructions
+
+1. Visit [commercetools Merchant Center](https://mc.europe-west1.gcp.commercetools.com/login)
+2. Login with your username and password
+3. Visit the [project creation page](https://mc.europe-west1.gcp.commercetools.com/account/projects/new)
+   - Select "Create project with sample data"
+   - Choose B2B or B2C sample data based on your needs
+   - Choose a project key (it will automatically be prefixed with `ecomhack25-`
+   - Make sure you check "I am participating in the ecomhack event with this project"
 
 ### 3. Get API Credentials
 1. Navigate to: Settings > Developer settings
