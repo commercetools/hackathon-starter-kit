@@ -19,6 +19,8 @@ Before running this example, you need:
 - commercetools account and project
 - API client credentials with required scopes
 - Sample products in your project (or import using the import example)
+- Shipping methods configured with rates
+- Configure taxes with rates for address being used for testing
 
 ### 2. commercetools Checkout Application Setup
 This is the **critical step** - you must set up a Checkout application in Merchant Center:
@@ -44,7 +46,7 @@ This is the **critical step** - you must set up a Checkout application in Mercha
    - Add payment methods (card etc.) and enable them
 
 5. **Copy Application ID**
-   - After configuration, copy the **Application ID**
+   - After configuration, copy the **Application Key**
    - You'll need this for your `.env` file
 
 ## 🛠 Installation & Setup
@@ -76,7 +78,7 @@ CTP_CLIENT_ID=your-client-id
 CTP_CLIENT_SECRET=your-client-secret
 CTP_AUTH_URL=https://auth.europe-west1.gcp.commercetools.com
 CTP_API_URL=https://api.europe-west1.gcp.commercetools.com
-CTP_SCOPES=manage_project:your-project-key manage_payments:your-project-key
+CTP_SCOPES=manage_orders:your-project-key manage_customers:your-project-key view_shipping_methods:your-project-key view_cart_discounts:your-project-key view_discount_codes:your-project-key view_tax_categories:your-project-key view_sessions:your-project-key view_categories:your-project-key view_products:your-project-key view_published_products:your-project-key view_project_settings:your-project-key create_anonymous_token:your-project-key view_standalone_prices:your-project-key manage_shopping_lists:your-project-key manage_order_edits:your-project-key view_product_selections:your-project-key view_types:your-project-key manage_sessions:your-project-key
 
 # commercetools Checkout Configuration
 CHECKOUT_APPLICATION_ID=your-checkout-application-id-from-step-5-above
@@ -90,7 +92,7 @@ CLIENT_PORT=3000
 Edit client `.env` with your project:
 
 ```env
-REACT_APP_CTP_PROJECT_KEY=consulting
+REACT_APP_CTP_PROJECT_KEY=your-project-key
 ```
 
 

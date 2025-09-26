@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const fetch = require('node-fetch');
 const { v4: uuidv4 } = require('uuid');
+const { URL } = require('url');
 require('dotenv').config();
 
 const { ClientBuilder } = require('@commercetools/ts-client');
@@ -12,8 +13,57 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '10mb' })); // Limit payload size for DoS protection
 app.use(express.static('client/build'));
+
+// Security helpers
+function validateCommercetoolsUrl(url) {
+  try {
+    const parsedUrl = new URL(url);
+    // Only allow commercetools domains to prevent SSRF
+    const allowedHosts = [
+      'session.europe-west1.gcp.commercetools.com',
+      'session.us-central1.gcp.commercetools.com',
+      'session.australia-southeast1.gcp.commercetools.com',
+      'auth.europe-west1.gcp.commercetools.com',
+      'auth.us-central1.gcp.commercetools.com',
+      'auth.australia-southeast1.gcp.commercetools.com',
+      'api.europe-west1.gcp.commercetools.com',
+      'api.us-central1.gcp.commercetools.com',
+      'api.australia-southeast1.gcp.commercetools.com'
+    ];
+
+    return allowedHosts.includes(parsedUrl.hostname) &&
+           (parsedUrl.protocol === 'https:');
+  } catch (error) {
+    return false;
+  }
+}
+
+function validateInput(input, type) {
+  if (!input) return false;
+
+  switch (type) {
+    case 'uuid':
+      return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(input);
+    case 'cartId':
+      // Allow UUID or commercetools ID format
+      return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(input) ||
+             /^[a-zA-Z0-9-_]{1,256}$/.test(input);
+    case 'currency':
+      return /^[A-Z]{3}$/.test(input);
+    case 'country':
+      return /^[A-Z]{2}$/.test(input);
+    case 'locale':
+      return /^[a-z]{2}(-[A-Z]{2})?$/.test(input);
+    case 'string':
+      return typeof input === 'string' && input.length <= 1000;
+    case 'number':
+      return typeof input === 'number' && input >= 0 && input <= 10000;
+    default:
+      return false;
+  }
+}
 
 // commercetools client setup
 const projectKey = process.env.CTP_PROJECT_KEY;
@@ -49,8 +99,17 @@ app.post('/api/checkout/session', async (req, res) => {
   try {
     const { cartId, returnUrl, locale = 'en' } = req.body;
 
-    if (!cartId) {
-      return res.status(400).json({ error: 'Cart ID is required' });
+    // Input validation for DoS protection
+    if (!cartId || !validateInput(cartId, 'cartId')) {
+      return res.status(400).json({ error: 'Valid Cart ID is required' });
+    }
+
+    if (locale && !validateInput(locale, 'locale')) {
+      return res.status(400).json({ error: 'Invalid locale format' });
+    }
+
+    if (returnUrl && !validateInput(returnUrl, 'string')) {
+      return res.status(400).json({ error: 'Invalid return URL format' });
     }
 
     console.log(`Creating checkout session for cart: ${cartId}`);
@@ -83,8 +142,13 @@ app.post('/api/checkout/session', async (req, res) => {
     console.log('Creating checkout session with correct structure:', checkoutSessionData);
 
     // Call commercetools Checkout API to create session
-    // Using the correct endpoint structure
+    // Using the correct endpoint structure with SSRF protection
     const sessionApiUrl = process.env.SESSION_API_URL || 'https://session.europe-west1.gcp.commercetools.com';
+
+    if (!validateCommercetoolsUrl(sessionApiUrl)) {
+      return res.status(400).json({ error: 'Invalid session API URL' });
+    }
+
     const checkoutResponse = await fetch(
       `${sessionApiUrl}/${projectKey}/sessions`,
       {
@@ -139,7 +203,24 @@ app.post('/api/checkout/session', async (req, res) => {
 // Sample cart creation endpoint for demo
 app.post('/api/cart/create', async (req, res) => {
   try {
-    const { currency = 'USD', country = 'US' } = req.body;
+    const { currency = 'USD', country = 'US', productId, quantity = 1 } = req.body;
+
+    // Input validation
+    if (currency && !validateInput(currency, 'currency')) {
+      return res.status(400).json({ error: 'Invalid currency format' });
+    }
+
+    if (country && !validateInput(country, 'country')) {
+      return res.status(400).json({ error: 'Invalid country format' });
+    }
+
+    if (productId && !validateInput(productId, 'string')) {
+      return res.status(400).json({ error: 'Invalid product ID format' });
+    }
+
+    if (typeof quantity !== 'undefined' && !validateInput(quantity, 'number')) {
+      return res.status(400).json({ error: 'Invalid quantity' });
+    }
 
     console.log('Creating sample cart...');
 
@@ -152,9 +233,9 @@ app.post('/api/cart/create', async (req, res) => {
           country: country,
           lineItems: [
             {
-              productId: req.body.productId || await getSampleProductId(),
+              productId: productId,
               variantId: 1,
-              quantity: req.body.quantity || 1,
+              quantity: quantity,
             }
           ]
         }
@@ -284,26 +365,6 @@ async function getAccessToken() {
   return tokenData.access_token;
 }
 
-async function getSampleProductId() {
-  try {
-    const products = await apiRoot
-      .productProjections()
-      .search()
-      .get({
-        queryArgs: { limit: 1 }
-      })
-      .execute();
-
-    if (products.body.results.length > 0) {
-      return products.body.results[0].id;
-    }
-
-    throw new Error('No products found in project');
-  } catch (error) {
-    console.error('Error getting sample product:', error);
-    throw error;
-  }
-}
 
 // Start server
 app.listen(PORT, () => {
