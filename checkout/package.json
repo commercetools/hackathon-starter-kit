@@ -1,0 +1,39 @@
+{
+  "name": "commercetools-checkout-example",
+  "version": "1.0.0",
+  "description": "commercetools Checkout integration example with React",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node src/server.js",
+    "setup": "npm install && cd client && npm install",
+    "build-server": "cd client && npm run build",
+    "build-client": "cd client && npm run build",
+    "start-client": "cd client && npm run start",
+    "start-server": "npm run server"
+  },
+  "dependencies": {
+    "@commercetools/platform-sdk": "^8.16.0",
+    "@commercetools/ts-client": "^4.2.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.7.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "^2.6.13",
+    "@types/uuid": "^9.0.0",
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.20"
+  },
+  "keywords": [
+    "commercetools",
+    "checkout",
+    "react",
+    "ecommerce",
+    "payments"
+  ],
+  "author": "commercetools",
+  "license": "MIT"
+}
