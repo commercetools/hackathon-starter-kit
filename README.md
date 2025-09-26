@@ -26,6 +26,13 @@ AI-native integrations for modern LLM applications
 - **Features**: MCP server offering 60+ commerce based tools 
 - **Full guide**: [commerce-mcp/essentials-mcp/README.md](commerce-mcp/essentials-mcp/README.md)
 
+### 📦 **Checkout**
+commercetools Checkout integration using Browser SDK
+- **Location**: `checkout/`
+- **Best for**: Prebuilt checkout component including payment integrations
+- **Features**: Full SDK access, type safety, complete control over API calls
+- **Full guide**: [checkout/README.md](checkout/README.md)
+
 ## 🚀 Quick Start
 
 ### For AI/LLM Applications
@@ -40,6 +47,16 @@ cd commerce-mcp/sample-app
 git clone https://github.com/commercetools/hackathon-starter-kit.git
 cd composable-commerce
 npm install
+```
+
+### For precomposed Checkout
+```bash
+git clone https://github.com/commercetools/hackathon-starter-kit.git
+cd checkout
+npm run setup
+# Configure .env with your credentials and Checkout Application ID
+npm run build-client && npm run start-client
+npm run start-server
 ```
 
 ## 💡 Sample Implementations & Use Cases
@@ -64,6 +81,18 @@ Traditional service layer applications with:
 - Bulk import operations
 
 **Examples**: `composable-commerce/src/examples/`
+
+### 💳 **Checkout Integration Example** (commercetools Checkout)
+Complete React e-commerce application with embedded checkout:
+- **Full Shopping Experience**: Product catalog, cart management, and checkout
+- **Embedded Payments**: Secure payment processing with commercetools Checkout
+- **Multiple Payment Methods**: Credit cards, PayPal, and more
+- **Order Completion**: Success pages and order confirmation
+- **Responsive Design**: Works on desktop and mobile
+- **Real-time Updates**: Cart and checkout state management
+
+**Framework**: `checkout/`
+**Full guide**: [checkout/README.md](checkout-example/README.md)
 
 ## 🔑 Project Setup
 
