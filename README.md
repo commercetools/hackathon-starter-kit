@@ -2,6 +2,69 @@
 
 A comprehensive starter kit for building modern commerce applications using commercetools' suite of products and APIs. This kit provides multiple pathways to integrate with commercetools, from traditional SDK usage to cutting-edge AI-powered Model Context Protocol (MCP) integrations.
 
+## 🔑 Project Setup
+
+### 1. Create or use existing commercetools account
+
+> If you do not have a commercetools account follow the following instructions
+ 
+1. Visit [commercetools Merchant Center](https://mc.europe-west1.gcp.commercetools.com/login/new)
+2. Create a new account and organization - no credit card required
+3. Enter your E-Mail and follow the instruction in the E-Mail sent
+4. The project creation flow shows
+   - Select "Create project with sample data"
+   - Choose B2B or B2C sample data based on your needs
+   - Chose an organization name of your liking
+   - Choose a project key (it will automatically be prefixed with `ecomhack25-`)
+   - Make sure you check "I am participating in the ecomhack event with this project"
+
+> If you have a commercetools account follow the following instructions
+
+1. Visit [commercetools Merchant Center](https://mc.europe-west1.gcp.commercetools.com/login)
+2. Login with your username and password
+3. Visit the [project creation page](https://mc.europe-west1.gcp.commercetools.com/account/projects/new)
+   - Select "Create project with sample data"
+   - Choose B2B or B2C sample data based on your needs
+   - Choose a project key (it will automatically be prefixed with `ecomhack25-`)
+   - Make sure you check "I am participating in the ecomhack event with this project"
+
+### 3. Get API Credentials
+1. Navigate to: Settings > Developer settings
+2. Click "Create new API client"
+3. Configure client:
+   - Name: `team<XX>-app`
+   - Template: Select "Admin Client"
+4. Save credentials immediately after creation
+
+### 4. Configure Environment
+1. Copy environment template:
+```bash
+cp .env.example .env
+```
+
+2. Update `.env` with your credentials:
+```env
+# Project Configuration
+CTP_PROJECT_KEY=ecomhack25-team<XX>
+
+# API Credentials
+CTP_CLIENT_ID=your-client-id
+CTP_CLIENT_SECRET=your-client-secret
+
+# API Endpoints
+CTP_API_URL=https://api.europe-west1.gcp.commercetools.com
+CTP_AUTH_URL=https://auth.europe-west1.gcp.commercetools.com
+
+# Scopes (Admin template provides full access)
+CTP_SCOPES="manage_project:${CTP_PROJECT_KEY} view_products:${CTP_PROJECT_KEY}"
+```
+
+⚠️ **IMPORTANT NOTES:**
+- Save your Client Secret immediately - it cannot be retrieved later
+- Never commit `.env` file to version control
+- Keep credentials secure and never share in AI prompts
+
+
 ## 🛠 Available guides
 
 ### 📦 **Composable Commerce SDK**
@@ -92,101 +155,17 @@ Complete React e-commerce application with embedded checkout:
 - **Real-time Updates**: Cart and checkout state management
 
 **Framework**: `checkout/`
-**Full guide**: [checkout/README.md](checkout-example/README.md)
+**Full guide**: [checkout/README.md](checkout/README.md)
 
-## 🔑 Project Setup
 
-### 1. Create or use a commercetools account
-
-> If you have no commercetools account follow the following instructions
- 
-1. Visit [commercetools Merchant Center](https://mc.europe-west1.gcp.commercetools.com/login/new)
-2. Create a new account and organization - no credit card required
-3. Enter your E-Mail and follow the instruction in the E-Mail sent
-4. The project creation flow shows
-   - Select "Create project with sample data"
-   - Choose B2B or B2C sample data based on your needs
-   - Chose an organization name of your liking
-   - Choose a project key (it will automatically be prefixed with `ecomhack25-`)
-   - Make sure you check "I am participating in the ecomhack event with this project"
-
-> If you have a commercetools account follow the following instructions
-
-1. Visit [commercetools Merchant Center](https://mc.europe-west1.gcp.commercetools.com/login)
-2. Login with your username and password
-3. Visit the [project creation page](https://mc.europe-west1.gcp.commercetools.com/account/projects/new)
-   - Select "Create project with sample data"
-   - Choose B2B or B2C sample data based on your needs
-   - Choose a project key (it will automatically be prefixed with `ecomhack25-`)
-   - Make sure you check "I am participating in the ecomhack event with this project"
-
-### 3. Get API Credentials
-1. Navigate to: Settings > Developer settings
-2. Click "Create new API client"
-3. Configure client:
-   - Name: `team<XX>-app`
-   - Template: Select "Admin Client"
-4. Save credentials immediately after creation
-
-### 4. Configure Environment
-1. Copy environment template:
-```bash
-cp .env.example .env
-```
-
-2. Update `.env` with your credentials:
-```env
-# Project Configuration
-CTP_PROJECT_KEY=ecomhack25-team<XX>
-
-# API Credentials
-CTP_CLIENT_ID=your-client-id
-CTP_CLIENT_SECRET=your-client-secret
-
-# API Endpoints
-CTP_API_URL=https://api.europe-west1.gcp.commercetools.com
-CTP_AUTH_URL=https://auth.europe-west1.gcp.commercetools.com
-
-# Scopes (Admin template provides full access)
-CTP_SCOPES="manage_project:${CTP_PROJECT_KEY} view_products:${CTP_PROJECT_KEY}"
-```
-
-⚠️ **IMPORTANT NOTES:**
-- Save your Client Secret immediately - it cannot be retrieved later
-- Never commit `.env` file to version control
-- Keep credentials secure and never share in AI prompts
-- Project key must start with `ecomhack25-`
-
-## 🛠 Prerequisites
-
-- Node.js v16 or higher
-- npm or yarn
-- commercetools account with:
-  - API Client credentials
-  - Project setup
-  - Required scopes configured
-
-## 🔧 Configuration
-
-1. Copy `.env.example` to `.env`:
-```bash
-cp .env.example .env
-```
-
-2. Update environment variables:
-```env
-CTP_PROJECT_KEY=your-project-key
-CTP_CLIENT_ID=your-client-id
-CTP_CLIENT_SECRET=your-client-secret
-CTP_SCOPE=your-scopes
-```
 
 ## 🆘 Support & Resources
 
 ### **Documentation**
-- [Commercetools Platform Documentation](https://docs.commercetools.com)
+- [commercetools Documentation](https://docs.commercetools.com)
 - [Commerce MCP Documentation](https://docs.commercetools.com/sdk/commerce-mcp)
 - [API Reference](https://docs.commercetools.com/api)
+- [Checkout Reference](https://docs.commercetools.com/checkout)
 
 ### **Community**
 - [Community Forum](https://community.commercetools.com)
@@ -198,8 +177,3 @@ CTP_SCOPE=your-scopes
 - [OpenAI Function Calling Guide](https://platform.openai.com/docs/guides/function-calling)
 - [AI SDK Documentation](https://sdk.vercel.ai/docs)
 
-## ✨ Acknowledgments
-
-- commercetools Team
-- EcomHack.AI Community
-- All open source contributors
