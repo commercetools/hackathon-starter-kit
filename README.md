@@ -29,12 +29,13 @@ A comprehensive starter kit for building modern commerce applications using comm
    - Make sure you check "I am participating in the ecomhack event with this project"
 
 ### 3. Get API Credentials
-1. Navigate to: Settings > Developer settings
-2. Click "Create new API client"
-3. Configure client:
+1. Visit Merchant Center with created project
+2. Navigate to: Settings > Developer settings
+3. Click "Create new API client"
+4. Configure client:
    - Name: `team<XX>-app`
-   - Template: Select "Admin Client"
-4. Save credentials immediately after creation
+   - Template: Select "Admin Client" (Only for hackathon/testing purposes, production workloads should always use fine grained API client scopes)
+5. Save credentials immediately after creation
 
 ### 4. Configure Environment
 1. Copy environment template:
